@@ -48,8 +48,8 @@ WHERE occupation is NULL ;
 --Output
 PERSON_ID ▼	LAST_NAME  	FIRST_NAME  	PREFERRED_FIRST_NAME  	DATE_OF_BIRTH  	HIRE_DATE  	OCCUPATION  
 -----------   ---------   -----------  ---------------------   --------------  -----------  -------------
-1236	      Faucher	    MitchelRoss	  Ross	                  1988-05-03	    2021-04-25	null
-1237	      Hirtzell	  jeff	        Jeff	                  1988-05-03	    2020-03-03	null
+1236	      Faucher	      MitchelRoss	  Ross	                  1988-05-03	    2021-04-25	null
+1237	      Hirtzell      jeff	        Jeff	                  1988-05-03	    2020-03-03	null
 
 
 --Write a query to select all rows from person that have a date_of_birth before August 7th, 1990
@@ -59,9 +59,9 @@ WHERE date_of_birth < '1990-08-07' ;
 
 --output
 PERSON_ID ▼	LAST_NAME  	FIRST_NAME  	PREFERRED_FIRST_NAME  	DATE_OF_BIRTH  	HIRE_DATE  	OCCUPATION  
-----------  ---------   ----------    -------------------     -----------   -----------   ----------
-1236	      Faucher	    MitchelRoss	  Ross	                  1988-05-03	    2021-04-25	null
-1237	      Hirtzell	  jeff	        Jeff	                  1988-05-03	    2020-03-03	null
+----------  ---------       ----------    -------------------         -----------      -----------   ----------
+1236	      Faucher	       MitchelRoss	  Ross	                  1988-05-03	    2021-04-25	null
+1237	      Hirtzell       jeff	        Jeff	                  1988-05-03	    2020-03-03	null
 
 
 --Write a query to select all rows from person that have a hire_date in the past 100 days.
@@ -71,10 +71,10 @@ WHERE DATEDIFF(day,hire_date,sysdate()) BETWEEN 0 AND 100 ;
 
 --Output
 PERSON_ID ▼	LAST_NAME  	FIRST_NAME  	PREFERRED_FIRST_NAME  	DATE_OF_BIRTH  	HIRE_DATE  	OCCUPATION  
----------   ---------   ----------    -----------------     ---------------   ---------   ---------
-1234	      Smith	      Johnson	      John	                  2021-04-25	    2021-04-25	P
-1235	      Rob	        Michael	      Mike	                  2021-04-25	    2021-04-25	X
-1236	      Faucher	    MitchelRoss	  Ross	                  1988-05-03	    2021-04-25	null
+---------   ---------   ----------    -----------------               ---------------      ---------   ---------    
+1234	      Smith	      Johnson	       John	                  2021-04-25	    2021-04-25	P
+1235	      Rob	      Michael	       Mike	                  2021-04-25	    2021-04-25	X
+1236	      Faucher	      MitchelRoss	Ross	                  1988-05-03	    2021-04-25	null
 
 
 --Write a query to select rows from person that also have a row in address with address_type = 'HOME'.
@@ -84,9 +84,9 @@ WHERE person_id IN ( SELECT person_id FROM address WHERE address_type = 'HOME') 
 
 --Output
 PERSON_ID ▼	LAST_NAME  	FIRST_NAME  	PREFERRED_FIRST_NAME  	DATE_OF_BIRTH  	HIRE_DATE  	OCCUPATION  
---------- ------------  ---------     ------------------    --------------    --------- -------------
+--------- ------------  ---------     ------------------              --------------    ---------        -------------
 1234	      Smith	      Johnson	      John	                  2021-04-25	    2021-04-25	P
-1235	      Rob	        Michael	      Mike	                  2021-04-25	    2021-04-25	X
+1235	      Rob	      Michael	      Mike	                  2021-04-25	    2021-04-25	X
 
 --Write a query to select all rows from person and only those rows from address that have a matching billing address (address_type = 'BILL').  If a matching billing address does not exist, display 'NONE' in the address_type column.
 SELECT  p.* 
@@ -104,10 +104,10 @@ ON p.person_id = a.person_id AND a.address_type = 'BILL';
 --Output
 PERSON_ID  	LAST_NAME  	FIRST_NAME  	PREFERRED_FIRST_NAME  	DATE_OF_BIRTH  	HIRE_DATE  	OCCUPATION  	ADDRESS_ID  	PERSON_ID  	ADDRESS_TYPE  	STREET_LINE  	CITY  	    STATE  	ZIP_CODE  
 ----------  --------    ----------    -------------------   ---------------   ----------    -----------   ----------- ----------  -------------
-1234	      Smith	      Johnson	      John	                  2021-04-25	    2021-04-25	P	            4	            1234	      BILL	          Broddock rd	  Rochester	  NY	    14623
-1235	      Rob	        Michael	      Mike	                  2021-04-25	    2021-04-25	X	            2	            1235	      BILL	          Henrietta	    Rochester	  NY	    14623
-1236	      Faucher	    MitchelRoss	  Ross	                  1988-05-03	    2021-04-25	null	        5	            1236	      BILL	          Henrietta	    Rochester	  NY	    14623
-1237	      Hirtzell	  jeff	        Jeff	                  1988-05-03	    2020-03-03	null	        null	        null	      NONE	          null	        null	      null	  null
+1234	      Smith	      Johnson	        John	                  2021-04-25	    2021-04-25	P	            4	            1234	      BILL	          Broddock rd	  Rochester	  NY	    14623
+1235	      Rob	      Michael         Mike	                  2021-04-25	    2021-04-25	X	            2	            1235	      BILL	          Henrietta	    Rochester	  NY	    14623
+1236	      Faucher	      MitchelRoss     Ross	                  1988-05-03	    2021-04-25	null	            5	            1236	      BILL	          Henrietta	    Rochester	  NY	    14623
+1237	      Hirtzell      jeff	        Jeff	                  1988-05-03	    2020-03-03	null	           null	        null	      NONE	          null	        null	      null	  null
 
 --Write a query to count the number of addresses per address type.
 
@@ -141,7 +141,7 @@ and nvl(a.home_address, 'not_there') != nvl(b.home_address, 'not_there');
 
 LAST_NAME  	HOME_ADDRESS  	                        BILLING_ADDRESS  
 ---------   ----------------------                  ---------------------
-Rob	        Henderson Rd, Rochester, NY 14623	      Henrietta, Rochester, NY 14623
+Rob	      Henderson Rd, Rochester, NY 14623	      Henrietta, Rochester, NY 14623
 Smith	      East Squire dr, Rochester, NY 14623	    Broddock rd, Rochester, NY 14623
 
 
@@ -152,9 +152,9 @@ WHERE person_id IN ( SELECT person_id FROM address WHERE address_type = 'BILL') 
 
 PERSON_ID  	LAST_NAME  	FIRST_NAME  	PREFERRED_FIRST_NAME  	DATE_OF_BIRTH  	HIRE_DATE  	OCCUPATION  	ADDRESS_TYPE  
 ----------  ---------   ----------    -------------------   ---------------   ----------    ---------   -------------
-1235	      Rob	        Michael	      Mike	                  2021-04-25	    2021-04-25	X	            BILL
+1235	      Rob	      Michael	      Mike	                  2021-04-25	    2021-04-25	X	            BILL
 1234	      Smith	      Johnson	      John	                  2021-04-25	    2021-04-25	X	            BILL
-1236	      Faucher	    MitchelRoss	  Ross	                  1988-05-03	    2021-04-25	X	            BILL
+1236	      Faucher	     MitchelRoss	  Ross	                  1988-05-03	    2021-04-25	X	            BILL
 
 
 
